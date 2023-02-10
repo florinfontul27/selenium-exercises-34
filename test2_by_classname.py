@@ -1,28 +1,27 @@
-#initializam chrome ul - un tab gol de chrome sau ce alt browser vrem
+
+#librari gratuite care ne trebuie sa accesam selenium si sa avem acces la chrome
 from time import sleep
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.select import Select
 
+#initializam chrome - un tab gol de chrome sau ce alt browser vrem
+#salvam in variabila chrome tabul gol de chrome
 
-
-#salvam intr o variabila tab ul deschis
 chrome = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+
+#maximaze window
 chrome.maximize_window()
 chrome.get("https://the-internet.herokuapp.com/login")
-sleep(3)
+sleep(5)
 #by id
 username_input = chrome.find_element(By.ID, "username")
 username_input.send_keys("tomsmith")
 chrome.find_element(By.ID, "password").send_keys("SuperSecretPassword!")
-sleep(3)
+sleep(10)
 #by class - ne folosim de atributul class
 chrome.find_element(By.CLASS_NAME, "radius").click()
 sleep(15)
-
-
-#ne inchide fereastra de chrome
+#ne inchide fereastra de crome
 chrome.quit()
-#in proiectul final nu putem sleep, asta e doar pt noi ca sa vedem

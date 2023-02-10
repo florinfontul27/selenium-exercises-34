@@ -13,11 +13,12 @@ chrome = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 #maximaze window
 chrome.maximize_window()
 chrome.get("https://the-internet.herokuapp.com/login")
-sleep(5)
-#daca are atributul name adica vedem name = "..." putem folosi By name
-username_input = chrome.find_element(By.NAME, "username")
-username_input.send_keys("tomsmith")
-chrome.find_element(By.NAME, "password").send_keys("SuperSecretPassword!")
-sleep(10)
-#ne inchide fereastra de crome
+link_text = chrome.find_element(By.LINK_TEXT, "Elemental Selenium")
+link_text.click()
+sleep(2)
+#am salvat taburile existente intr-o lista
+#ca sa puteti da clic intr-un anumit tab, sa luati url-ul sau sa faceti orice pe pagina respectiva trebuie sa schimbati focusul pe tabul respectiv
+lista_taburi = chrome.window_handles
+chrome.switch_to.window(lista_taburi[1])
+assert chrome.current_url == "http://elementalselenium.com/"
 chrome.quit()
